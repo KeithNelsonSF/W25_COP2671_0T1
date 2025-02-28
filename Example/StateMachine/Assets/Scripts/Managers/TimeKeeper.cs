@@ -1,20 +1,26 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
 {
+    // timer level events
     public UnityEvent OnStart;
     public UnityEvent OnStop;
     public UnityEvent OnPause;
     public UnityEvent OnResume;
+    public UnityEvent OnQuit;
+    
+    // time events
     public UnityEvent OnCountdownStart;
     public UnityEvent OnCountdownEnd;
+    public UnityEvent<float> OnCountDownChange;
     public UnityEvent<float> OnChange;
-    public UnityEvent OnQuit;
+    
+    private Coroutine timeCoroutine;    
 
-
-    [SerializeField] float countTimeRemaining;
+    [SerializeField] float countdownTime;
     float elaspedTime = 0f;
     float countdownElapsedTime = 0;
     bool isRunning
@@ -25,6 +31,7 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
     private void Start()
     {
         Time.timeScale = 0f;
+        countdownElapsedTime = countdownTime;        
     }
     private void Update()
     {
@@ -37,14 +44,45 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
         }
     }
 
+    private IEnumerator TimeCoroutine()
+    {
+        while(isActiveAndEnabled)
+        {
+            while(isRunning)
+            {
+                if (countdownElapsedTime > 0)
+                {
+                    if (countdownElapsedTime == countdownTime)
+                        OnCountdownStart.Invoke();
+
+                    countdownElapsedTime -= Time.deltaTime;
+                } 
+                else
+                {
+                    countdownElapsedTime = 0;
+                    OnCountdownEnd.Invoke();
+                    TimerStop();
+                }
+                OnCountDownChange.Invoke(countdownElapsedTime);
+
+                elaspedTime += Time.deltaTime;
+                OnChange.Invoke(elaspedTime);
+                yield return null;
+            }
+            yield return null;
+        }
+    }
+
     public void TimerStart() 
     {
         OnStart.Invoke();
+        timeCoroutine = StartCoroutine(TimeCoroutine());
         Time.timeScale = 1f;
     }
     public void TimerStop()
     {
         Time.timeScale = 0f;
+        StopCoroutine(timeCoroutine);
         OnStop.Invoke();
     }
     public void TimerPause()

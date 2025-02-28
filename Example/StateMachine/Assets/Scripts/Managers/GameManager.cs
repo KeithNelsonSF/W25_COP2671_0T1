@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
@@ -16,6 +17,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private void Start()
     {        
         TimeKeeper.Instance.OnStop.AddListener(StopGame);
+        TimeKeeper.Instance.OnCountdownEnd.AddListener(
+            () => Debug.Log("Count Down Ended")); 
     }    
     public void StopGame() 
     {
