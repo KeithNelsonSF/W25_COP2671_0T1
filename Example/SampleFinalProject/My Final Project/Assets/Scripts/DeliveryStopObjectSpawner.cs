@@ -1,36 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryStopObjectSpawner : ObjectPool<Waypoint>
+public class DeliveryStopObjectSpawner : MonoBehaviour
 {
     [SerializeField] List<Waypoint> waypoints;
 
-    public override void InitializeAfterAwake()
+    [SerializeField] List<GameObject> pooledObjects = new List<GameObject>();
+
+    private void Start()
     {
         PoolObjects();
+        GameManager.Instance.OnDeliveryStart.AddListener(SelectNextDeliveryStop);
     }
 
+    private void SelectNextDeliveryStop(int pizzas)
+    {
+        var rnd = Random.Range(0, pooledObjects.Count -1);
+        pooledObjects[1].gameObject.SetActive(true);
+    }
     private void PoolObjects()
     {
         if (waypoints.Count == 0)
             return;
 
-        _amount = waypoints.Count;
-        _pooledObjects = new List<Waypoint>();
-
         GameObject newObject;
-        for (int i = 0; i != _amount; ++i)
+        for (int i = 0; i != waypoints.Count; ++i)
         {   
-            var objToSpawn = waypoints[i];
-            if (objToSpawn == null)
-                objToSpawn = _prefab;
-
-            newObject = Instantiate(objToSpawn.gameObject, transform);
+            newObject = Instantiate(waypoints[i].gameObject, transform);
             newObject.SetActive(false);
-            newObject.name = objToSpawn.gameObject.name;
-
-            _pooledObjects.Add(newObject.GetComponent<Waypoint>());
+            newObject.name = waypoints[i].gameObject.name;
+            pooledObjects.Add(newObject);
         }
-        _isReady = true;
     }
 }

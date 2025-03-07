@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WP_RepairShop
       objectReference: {fileID: 0}
+    - target: {fileID: 6875572533308687524, guid: 54e371cfe4025b243a50b1079097fe25, type: 3}
+      propertyPath: pizzasToDeliver
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

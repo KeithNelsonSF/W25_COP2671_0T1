@@ -6,6 +6,7 @@ public class BlinkObject : MonoBehaviour
     [SerializeField] float blinkInterval = 0.5f;
 
     bool isRendererActive => meshRenderer.enabled;
+
     MeshRenderer meshRenderer;
     Coroutine blinkCoroutine = null;
 

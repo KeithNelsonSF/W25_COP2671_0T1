@@ -3,14 +3,10 @@ using UnityEngine;
 
 public class TimerObject : MonoBehaviour
 {
-    [SerializeField] float interval;
-
-    bool isRendererActive => meshRenderer.enabled;
-    MeshRenderer meshRenderer;
+    [SerializeField] float interval;    
 
     void Start()
-    {
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
+    {        
         StartCoroutine(TimeoutCoroutine());
     }
 

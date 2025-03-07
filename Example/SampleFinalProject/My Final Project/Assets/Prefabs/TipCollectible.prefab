@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 588766518061999866}
   - component: {fileID: 479222562803773227}
   - component: {fileID: 8548893151528955998}
-  - component: {fileID: 2360199679075285338}
   - component: {fileID: 2535654428938141782}
   m_Layer: 0
   m_Name: TipCollectible
@@ -70,19 +69,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeed: 20
---- !u!114 &2360199679075285338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006315783391303160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7030cc67844f084586c330180b832ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interval: 5
 --- !u!114 &2535654428938141782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120f0a77ea2f34a468e779d9a4c9b92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipAmount: 45
+  tipCalculatationMultiplier: 5
 --- !u!1001 &4756922284769025218
 PrefabInstance:
   m_ObjectHideFlags: 0
