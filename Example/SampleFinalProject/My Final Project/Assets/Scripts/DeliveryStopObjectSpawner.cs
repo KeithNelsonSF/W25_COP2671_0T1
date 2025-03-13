@@ -1,10 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeliveryStopObjectSpawner : MonoBehaviour
 {
-    [SerializeField] List<Waypoint> waypoints;
-
+    [SerializeField] List<DeliveryStop> waypoints;
     [SerializeField] List<GameObject> pooledObjects = new List<GameObject>();
 
     private void Start()
@@ -12,11 +12,16 @@ public class DeliveryStopObjectSpawner : MonoBehaviour
         PoolObjects();
         GameManager.Instance.OnDeliveryStart.AddListener(SelectNextDeliveryStop);
     }
+    private IEnumerator ActivateNextDeliveryStop()
+    {
+        yield return new WaitForSeconds(1); 
 
+        var rnd = Random.Range(0, pooledObjects.Count - 1);
+        pooledObjects[1].gameObject.SetActive(true);
+    }
     private void SelectNextDeliveryStop(int pizzas)
     {
-        var rnd = Random.Range(0, pooledObjects.Count -1);
-        pooledObjects[1].gameObject.SetActive(true);
+        StartCoroutine(ActivateNextDeliveryStop());        
     }
     private void PoolObjects()
     {

@@ -7,13 +7,13 @@ public class TipCollectible : MonoBehaviour
 
     private int tipDecreaseAmount;
     Coroutine tipCoroutine;
-    Waypoint waypoint;
+    DeliveryStop waypoint;
 
     private int tipAmount;
     private int distance;
     private void Start()
     {
-         waypoint = gameObject.transform.parent.GetComponent<Waypoint>();       
+         waypoint = gameObject.transform.parent.GetComponent<DeliveryStop>();       
 
         tipAmount = Mathf.FloorToInt(waypoint.pizzasToDeliver * tipCalculatationMultiplier);
 

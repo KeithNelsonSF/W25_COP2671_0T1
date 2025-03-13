@@ -8,11 +8,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     [SerializeField] GameObject dummyCar;
     [SerializeField] CarController carPrefab;
-    public Transform carSpawnPoint;
+    public Waypoint carSpawnPoint;
     public int pizzasToDeliver = 0;
 
     private void Start()
     {
+        OnPizzaDelivered.AddListener(PizzasDelivered);
+
+
         // tips collect
         //  sound ?
         // pizza delivered
@@ -52,15 +55,21 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private void CalculatePizzasToDeliver()
     {
         pizzasToDeliver = Random.Range(1, 10);
-        OnDeliveryStart.Invoke(pizzasToDeliver);
+        OnDeliveryStart.Invoke(pizzasToDeliver);        
     }
+
+    private void PizzasDelivered(int pizzas)
+    {
+        
+    }
+
 
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Instantiate(carPrefab, carSpawnPoint.position, carSpawnPoint.rotation);
+            Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
             CalculatePizzasToDeliver();
             dummyCar.SetActive(false);
         }

@@ -2735,7 +2735,7 @@ MonoBehaviour:
       m_Calls: []
   dummyCar: {fileID: 8175231763257762487}
   carPrefab: {fileID: 2402229249731144511, guid: aec85039b0ce31b42bae93f7ce258732, type: 3}
-  carSpawnPoint: {fileID: 894377216}
+  carSpawnPoint: {fileID: 1131423256}
   pizzasToDeliver: 0
 --- !u!4 &217414823
 Transform:
@@ -3357,11 +3357,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
-  - {fileID: 4702222852208711085, guid: 60ce0cbf5690b604b8b54acc98dec4d4, type: 3}
-  - {fileID: 8156879417269516996, guid: 56876c19ff8c5b546997d8a2b67f87a9, type: 3}
-  - {fileID: 4199542487854300407, guid: 63cd3e6d7dd8b9b46974ac93d4ffe8dc, type: 3}
-  - {fileID: 1684015354376435478, guid: 28640dc1d8365da4e916b3a73fa803b7, type: 3}
-  - {fileID: 6571179176711860080, guid: 018c21e33eaf9ba48969774034851866, type: 3}
+  - {fileID: 3749075589719057557, guid: 60ce0cbf5690b604b8b54acc98dec4d4, type: 3}
+  - {fileID: 321387502468221948, guid: 56876c19ff8c5b546997d8a2b67f87a9, type: 3}
+  - {fileID: 5692839116096540111, guid: 63cd3e6d7dd8b9b46974ac93d4ffe8dc, type: 3}
+  - {fileID: 7068419049888941614, guid: 28640dc1d8365da4e916b3a73fa803b7, type: 3}
+  - {fileID: 3348221825171562056, guid: 018c21e33eaf9ba48969774034851866, type: 3}
   pooledObjects: []
 --- !u!1001 &272009689
 PrefabInstance:
@@ -8791,11 +8791,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d80c7433031fdee44bf3910c4b046ce7, type: 3}
   m_PrefabInstance: {fileID: 173999227}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &894377216 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1640177169601487018, guid: 92e4882c9e8758048b4cc017a2fc771e, type: 3}
-  m_PrefabInstance: {fileID: 4422328263374918772}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &897993285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10403,6 +10398,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d80c7433031fdee44bf3910c4b046ce7, type: 3}
   m_PrefabInstance: {fileID: 1574550363}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1131423256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 958802537998387843, guid: 92e4882c9e8758048b4cc017a2fc771e, type: 3}
+  m_PrefabInstance: {fileID: 4422328263374918772}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35727f7edfc17f2459bc2fa9d3bf8250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1134541937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d80c7433031fdee44bf3910c4b046ce7, type: 3}
@@ -18573,6 +18579,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 958802537998387843, guid: 92e4882c9e8758048b4cc017a2fc771e, type: 3}
+      propertyPath: height
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1640177169601487018, guid: 92e4882c9e8758048b4cc017a2fc771e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -18613,11 +18623,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3036519749476643249, guid: 92e4882c9e8758048b4cc017a2fc771e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8220996357188101161, guid: 92e4882c9e8758048b4cc017a2fc771e, type: 3}
       propertyPath: m_Name
       value: WP_PizzaShop
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6834881497535728668, guid: 92e4882c9e8758048b4cc017a2fc771e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18899,7 +18914,7 @@ GameObject:
   - component: {fileID: 8175231763254869687}
   - component: {fileID: 8175231763255835767}
   m_Layer: 0
-  m_Name: Vehicles_PizzaCar
+  m_Name: Scene_PizzaCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19064,5 +19079,5 @@ SceneRoots:
   - {fileID: 230175842}
   - {fileID: 4422328263374918772}
   - {fileID: 217414823}
-  - {fileID: 1659963799}
   - {fileID: 271246710}
+  - {fileID: 1659963799}
