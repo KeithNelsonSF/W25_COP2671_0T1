@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DeliveryStop : MonoBehaviour
@@ -38,8 +39,8 @@ public class DeliveryStop : MonoBehaviour
         }
 
         distanceToPizzaShop = CalculateDistanceToPizzaShop();
-        GameManager.Instance.OnDeliveryStart.AddListener((pizzas) => pizzasToDeliver = pizzas);
-        GameManager.Instance.OnPizzaDelivered.AddListener((pizzas) => gameObject.SetActive(false));
+        //GameManager.Instance.OnDeliveryStart.AddListener((pizzas) => pizzasToDeliver = pizzas);
+        //GameManager.Instance.OnPizzaDelivered.AddListener((pizzas) => gameObject.SetActive(false));
     }
     public int CalculateDistanceToPizzaShop()
     {
@@ -49,8 +50,23 @@ public class DeliveryStop : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out CarController carController))
-        {
+        {            
+            GameManager.Instance.pizzasDelivered += pizzasToDeliver;
+            if (tipAmount > 0)
+            {
+                GameManager.Instance.tipsCollected += tipAmount;
+                StartCoroutine(tipTheDriver());
+            }
             GameManager.Instance.OnPizzaDelivered.Invoke(pizzasToDeliver);
+            gameObject.SetActive(false);            
         }
+    }
+
+
+    private IEnumerator tipTheDriver()
+    {
+        tipCollectible.gameObject.SetActive(false);
+        tipParticle.Play();
+        yield return new WaitForSeconds(tipParticle.main.duration);
     }
 }

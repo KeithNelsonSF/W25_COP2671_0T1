@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,15 +6,26 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public UnityEvent<int> OnPizzaDelivered;
     public UnityEvent<int> OnDeliveryStart;
-
-    [SerializeField] GameObject dummyCar;
+        
     [SerializeField] CarController carPrefab;
     public Waypoint carSpawnPoint;
     public int pizzasToDeliver = 0;
+    public int tipsCollected = 0;
+    public int pizzasDelivered = 0;
+
+    public string currentDeliveryStopName = "";
 
     private void Start()
     {
-        OnPizzaDelivered.AddListener(PizzasDelivered);
+        OnPizzaDelivered.AddListener(PizzasDelivered);        
+
+        // on timer start
+        //  disable scene
+        //  
+
+
+
+
 
 
         // tips collect
@@ -48,14 +60,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // -- backlog --
         // miles driven, start - finish / toal game
         // achievemant system
-
-
     }
 
-    private void CalculatePizzasToDeliver()
+    public void CalculatePizzasToDeliver()
     {
         pizzasToDeliver = Random.Range(1, 10);
-        OnDeliveryStart.Invoke(pizzasToDeliver);        
+        StartCoroutine(WaitForSecond());
     }
 
     private void PizzasDelivered(int pizzas)
@@ -63,15 +73,23 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         
     }
 
-
-
-    private void Update()
+    private IEnumerator WaitForSecond()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
-            CalculatePizzasToDeliver();
-            dummyCar.SetActive(false);
-        }
+        yield return new WaitForSeconds(1);
+        OnDeliveryStart.Invoke(pizzasToDeliver);
+    }
+
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Q))
+    //    {   
+    //        SpawnPizzaTruck();
+    //    }
+    //}
+
+    public void SpawnPizzaTruck()
+    {
+        Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);        
     }
 }

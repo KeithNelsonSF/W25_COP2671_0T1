@@ -17,7 +17,8 @@ public class DeliveryStopObjectSpawner : MonoBehaviour
         yield return new WaitForSeconds(1); 
 
         var rnd = Random.Range(0, pooledObjects.Count - 1);
-        pooledObjects[1].gameObject.SetActive(true);
+        pooledObjects[rnd].gameObject.SetActive(true);
+        GameManager.Instance.currentDeliveryStopName = pooledObjects[rnd].name;
     }
     private void SelectNextDeliveryStop(int pizzas)
     {

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640177169601487018}
-  - component: {fileID: 5831918775042494909}
   - component: {fileID: 3208105985377088453}
+  - component: {fileID: 5831918775042494909}
   - component: {fileID: 958802537998387843}
   m_Layer: 0
   m_Name: WP_PizzaShop
@@ -35,19 +35,6 @@ Transform:
   - {fileID: 3036519749476643249}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &5831918775042494909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8220996357188101161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff0c5e49ff50be94b9665391b0d272b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blinkInterval: 0.5
 --- !u!65 &3208105985377088453
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69,6 +56,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9772217, y: 0.10869076, z: 1.9855134}
   m_Center: {x: -0.0035099983, y: 0.005025033, z: -0.0010931492}
+--- !u!114 &5831918775042494909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220996357188101161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0c5e49ff50be94b9665391b0d272b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkInterval: 0.5
 --- !u!114 &958802537998387843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35727f7edfc17f2459bc2fa9d3bf8250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  height: 0
 --- !u!1001 &3290262032275609178
 PrefabInstance:
   m_ObjectHideFlags: 0
