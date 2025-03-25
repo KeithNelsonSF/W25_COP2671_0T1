@@ -5,15 +5,19 @@ public class BlinkObject : MonoBehaviour
 {
     [SerializeField] float blinkInterval = 0.5f;
 
-    bool isRendererActive => meshRenderer.enabled;
+    bool isRendererActive => meshRenderer != null && meshRenderer.enabled;
 
     MeshRenderer meshRenderer;
     Coroutine blinkCoroutine = null;
 
+    private void OnEnable()
+    {
+        blinkCoroutine = StartCoroutine(BlinkCoroutine());
+    }
+
     void Start()
     {
         meshRenderer = GetComponentInChildren<MeshRenderer>();
-        blinkCoroutine = StartCoroutine(BlinkCoroutine());
     }
     private IEnumerator BlinkCoroutine()
     {
@@ -25,7 +29,8 @@ public class BlinkObject : MonoBehaviour
             }
             else
             {
-                meshRenderer.enabled = true;
+                if (meshRenderer != null)
+                    meshRenderer.enabled = true;
             }            
             yield return new WaitForSeconds(blinkInterval);
         }

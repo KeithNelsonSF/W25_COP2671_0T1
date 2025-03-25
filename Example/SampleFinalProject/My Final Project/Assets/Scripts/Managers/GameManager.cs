@@ -4,8 +4,11 @@ using UnityEngine.Events;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    public UnityEvent OnGameStart;
     public UnityEvent<int> OnPizzaDelivered;
-    public UnityEvent<int> OnDeliveryStart;
+    public UnityEvent<int> StartPizzaDelivery;
+    public UnityEvent<float> OnDeliveryStart;
+
         
     [SerializeField] CarController carPrefab;
     public Waypoint carSpawnPoint;
@@ -17,7 +20,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start()
     {
-        OnPizzaDelivered.AddListener(PizzasDelivered);        
+        OnDeliveryStart.AddListener(StartDelivery);
+        OnPizzaDelivered.AddListener(PizzasDelivered);    
+        
 
         // on timer start
         //  disable scene
@@ -62,32 +67,21 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // achievemant system
     }
 
-    public void CalculatePizzasToDeliver()
+    private void StartDelivery(float delay)
     {
         pizzasToDeliver = Random.Range(1, 10);
-        StartCoroutine(WaitForSecond());
-    }
-
+        StartCoroutine(StartDeliveryWithDelay(delay));
+    }    
     private void PizzasDelivered(int pizzas)
     {
-        
+        carSpawnPoint.gameObject.SetActive(true);
+        ScoreManager.Instance.OnDeliveryStopChanged.Invoke("Return for Dispatch!");
     }
-
-    private IEnumerator WaitForSecond()
+    private IEnumerator StartDeliveryWithDelay(float delay)
     {
-        yield return new WaitForSeconds(1);
-        OnDeliveryStart.Invoke(pizzasToDeliver);
+        yield return new WaitForSeconds(delay);
+        StartPizzaDelivery.Invoke(pizzasToDeliver);
     }
-
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Q))
-    //    {   
-    //        SpawnPizzaTruck();
-    //    }
-    //}
-
     public void SpawnPizzaTruck()
     {
         Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);        

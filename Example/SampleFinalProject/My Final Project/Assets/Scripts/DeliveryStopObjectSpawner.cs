@@ -10,15 +10,15 @@ public class DeliveryStopObjectSpawner : MonoBehaviour
     private void Start()
     {
         PoolObjects();
-        GameManager.Instance.OnDeliveryStart.AddListener(SelectNextDeliveryStop);
+        GameManager.Instance.StartPizzaDelivery.AddListener(SelectNextDeliveryStop);
     }
     private IEnumerator ActivateNextDeliveryStop()
     {
-        yield return new WaitForSeconds(1); 
+        yield return null;
 
-        var rnd = Random.Range(0, pooledObjects.Count - 1);
+        var rnd = Random.Range(0, 9999) % pooledObjects.Count;
         pooledObjects[rnd].gameObject.SetActive(true);
-        GameManager.Instance.currentDeliveryStopName = pooledObjects[rnd].name;
+        ScoreManager.Instance.OnDeliveryStopChanged.Invoke($"Pizza Run to {pooledObjects[rnd].name}");
     }
     private void SelectNextDeliveryStop(int pizzas)
     {
@@ -37,5 +37,9 @@ public class DeliveryStopObjectSpawner : MonoBehaviour
             newObject.name = waypoints[i].gameObject.name;
             pooledObjects.Add(newObject);
         }
+    }
+    public static void ReturnToPool(DeliveryStop deliveryStop)
+    {
+        deliveryStop.gameObject.SetActive(false);
     }
 }

@@ -1,24 +1,14 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class PizzaDeliveredText : MonoBehaviour
 {
+    [SerializeField] TMP_Text pizzaDeiveredeText;
+    int currentPizzaCount = 0;
 
-    [SerializeField] TMP_Text pizzaDEliveredeText;
-
-    private void Start()
+    public void UpdateText(int pizzasToAdd)
     {
-        pizzaDEliveredeText = GetComponent<TMP_Text>();
-    }
-
-    public void UpdateText()
-    {
-        StartCoroutine(WaitForSecond());
-    }
-    private IEnumerator WaitForSecond()
-    {
-        yield return new WaitForSeconds(2);
-        pizzaDEliveredeText.text = "Pizzas Delivered - " + GameManager.Instance.pizzasDelivered;
-    }
+        currentPizzaCount += pizzasToAdd;
+        pizzaDeiveredeText.text = $"Pizzas Delivered - {currentPizzaCount:00}";
+    }    
 }
