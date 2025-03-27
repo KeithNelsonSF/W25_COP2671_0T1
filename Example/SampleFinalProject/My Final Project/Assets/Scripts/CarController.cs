@@ -16,8 +16,12 @@ public class CarController : MonoBehaviour
 
     private void Awake()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>();        
         _audioSource = GetComponent<AudioSource>();
+    }
+    private void Start()
+    {
+        _agent.speed = GameManager.Instance.carSpeed;
     }
     private void Update()
     {

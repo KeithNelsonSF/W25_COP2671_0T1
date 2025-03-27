@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class CollissionObject : MonoBehaviour
 {
+    [SerializeField] float collisionDamage = 0.2f;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.TryGetComponent(out CarController carController))
+        if (collision.collider.tag == "Player")
         {
-            Debug.Log("Collission " + gameObject.name);
+            ScoreManager.Instance.OnCollissionDamge.Invoke(collisionDamage);
         }
     }
 }

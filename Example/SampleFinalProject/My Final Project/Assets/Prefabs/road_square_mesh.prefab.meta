@@ -6,6 +6,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 43500
   packageName: Simple Town - Cartoon Assets
-  packageVersion: 12.4
-  assetPath: Assets/Resources/SimpleTownLite/Prefabs/road_square_mesh.prefab
-  uploadId: 631662
+  packageVersion: 1.3.0
+  assetPath: Assets/Prefabs/road_square_mesh.prefab
+  uploadId: 739765

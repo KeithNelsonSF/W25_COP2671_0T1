@@ -12,10 +12,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         
     [SerializeField] CarController carPrefab;
     public Waypoint carSpawnPoint;
-    public int pizzasToDeliver = 0;
-    public int tipsCollected = 0;
-    public int pizzasDelivered = 0;
+    public float carSpeed = .2f;
 
+    public int pizzasToDeliver = 0;    
+    public int totalTipsCollected = 0;
+    public int totalPizzasDelivered = 0;
+    public float totalCollissionDamage = 0f;
     public string currentDeliveryStopName = "";
 
     private void Start()

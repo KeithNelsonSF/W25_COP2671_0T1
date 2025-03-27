@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5202822779386540978
+--- !u!1001 &2035273790887935888
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -50,11 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460137957022866798, guid: 54e371cfe4025b243a50b1079097fe25, type: 3}
       propertyPath: m_Name
-      value: WP_RepairShop
-      objectReference: {fileID: 0}
-    - target: {fileID: 6875572533308687524, guid: 54e371cfe4025b243a50b1079097fe25, type: 3}
-      propertyPath: pizzasToDeliver
-      value: 0
+      value: Repair Shop Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

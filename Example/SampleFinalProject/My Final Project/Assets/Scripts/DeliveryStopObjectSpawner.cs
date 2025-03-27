@@ -18,7 +18,7 @@ public class DeliveryStopObjectSpawner : MonoBehaviour
 
         var rnd = Random.Range(0, 9999) % pooledObjects.Count;
         pooledObjects[rnd].gameObject.SetActive(true);
-        ScoreManager.Instance.OnDeliveryStopChanged.Invoke($"Pizza Run to {pooledObjects[rnd].name}");
+        ScoreManager.Instance.OnDeliveryStopChanged.Invoke($"Pizza Run to {pooledObjects[rnd].name.Replace(" Variant","")}");
     }
     private void SelectNextDeliveryStop(int pizzas)
     {
