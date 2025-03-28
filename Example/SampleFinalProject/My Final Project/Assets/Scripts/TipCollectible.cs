@@ -3,40 +3,51 @@ using UnityEngine;
 
 public class TipCollectible : MonoBehaviour
 {
-    [SerializeField] float tipCalculatationMultiplier = 5f;
-
-    public int tipAmount;
-    private int tipDecreaseAmount;
+    private float tipCalculatationMultiplier;
+    private int tipBase = 0;
+    private int tipAmount;
+    private int tripDistance;
+    private float tipDecreaseAmount;
     Coroutine tipCoroutine;
-    DeliveryStop waypoint;
-    
-    private int distance;
+    DeliveryStop deliveryStop;
 
     private void Awake()
     {
-        waypoint = gameObject.transform.parent.GetComponent<DeliveryStop>();
-        tipAmount = Mathf.FloorToInt(waypoint.pizzasToDeliver * tipCalculatationMultiplier);
-        distance = tipDecreaseAmount = waypoint.CalculateDistanceToPizzaShop();
+        deliveryStop = gameObject.transform.parent.GetComponent<DeliveryStop>();        
+        tripDistance = deliveryStop.CalculateDistanceToPizzaShop();
+        tipDecreaseAmount = tripDistance;        
+    }
+    private void Start()
+    {
+        SetMultiplier(1f);
         tipCoroutine = StartCoroutine(DecreaseTimeAmountCo());
     }
     private IEnumerator DecreaseTimeAmountCo()
     {
-        while (tipDecreaseAmount > 0)
+        while (tipDecreaseAmount > 0f)
         {
-            yield return new WaitForSeconds(1);
-            tipDecreaseAmount -= 1;            
+            yield return null;
+                //new WaitForSeconds(1);
+            tipDecreaseAmount -= Time.deltaTime;
         }
-        if (tipDecreaseAmount <= 0)
+        if (tipDecreaseAmount <= 0f)
         {
-            tipDecreaseAmount = 0;
+            tipDecreaseAmount = 0f;
             StopCoroutine(tipCoroutine);
         }
         Debug.Log(tipDecreaseAmount);
         yield return null;
     }
+
+    public float SetMultiplier(float multiplier)
+    {
+        tipCalculatationMultiplier = multiplier;
+        tipBase = Mathf.FloorToInt(GameManager.Instance.pizzasToDeliver * tipCalculatationMultiplier);
+        return tipCalculatationMultiplier;
+    }
     public int CalculateTip()
     {
-        tipAmount += 1 * (tipDecreaseAmount / distance);
+        tipAmount = tipBase - (1 - Mathf.FloorToInt(tipDecreaseAmount / tripDistance));
         return tipAmount;
     }
 }

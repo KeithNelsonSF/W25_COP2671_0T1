@@ -8,6 +8,6 @@ public class SoundManager : MonoBehaviour
 
     public void AlterMusicVolume()
     {
-        mixerGroup.audioMixer.SetFloat("Volume", musicLevel);
+        //mixerGroup.audioMixer.SetFloat("Volume", musicLevel);
     }
 }

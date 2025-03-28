@@ -5,8 +5,9 @@ using UnityEngine;
 public class DeliveryStop : MonoBehaviour
 {
     [SerializeField] float height;
+    [SerializeField] float tipMultiplier;
     
-    public int pizzasToDeliver = 1;
+    //public int pizzasToDeliver = 1;
 
     ParticleSystem tipParticle;
     TipCollectible tipCollectible;
@@ -15,6 +16,8 @@ public class DeliveryStop : MonoBehaviour
     private void Awake()
     {
         tipCollectible = GetComponentInChildren<TipCollectible>();
+        tipCollectible.SetMultiplier(tipMultiplier);
+
         tipCollectible.transform.position = new Vector3(transform.position.x, height, transform.position.z);
 
         tipParticle = GetComponentInChildren<ParticleSystem>();
@@ -30,7 +33,6 @@ public class DeliveryStop : MonoBehaviour
         {
             tipParticle.gameObject.SetActive(true);
         }
-        pizzasToDeliver = Random.Range(1, 10);
     }
     public void Activate()
     {
@@ -48,15 +50,18 @@ public class DeliveryStop : MonoBehaviour
     {
         if (other.TryGetComponent(out CarController carController))
         {
-            ScoreManager.Instance.OnPizzaScoreChanged.Invoke(pizzasToDeliver);
+            ScoreManager.Instance.OnPizzaScoreChanged.Invoke(GameManager.Instance.pizzasToDeliver);
             var tipAmount = tipCollectible.CalculateTip();
             if (tipAmount > 0)
             {
                 ScoreManager.Instance.OnTipsScoreChanged.Invoke(tipAmount);
-                StartCoroutine(tipTheDriver());
+                StartCoroutine(tipTheDriver());                
             }
-            GameManager.Instance.OnPizzaDelivered.Invoke(pizzasToDeliver);
-            DeliveryStopObjectSpawner.ReturnToPool(this);
+            else
+            {
+                GameManager.Instance.OnPizzaDelivered.Invoke(GameManager.Instance.pizzasToDeliver);
+                DeliveryStopObjectSpawner.ReturnToPool(this);
+            }            
         }
     }
     private IEnumerator tipTheDriver()
@@ -64,5 +69,7 @@ public class DeliveryStop : MonoBehaviour
         tipCollectible.gameObject.SetActive(false);
         tipParticle.Play();
         yield return new WaitForSeconds(tipParticle.main.duration);
+        GameManager.Instance.OnPizzaDelivered.Invoke(GameManager.Instance.pizzasToDeliver);
+        DeliveryStopObjectSpawner.ReturnToPool(this);
     }
 }

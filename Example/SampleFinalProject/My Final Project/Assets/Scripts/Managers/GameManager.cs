@@ -5,13 +5,18 @@ using UnityEngine.Events;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public UnityEvent OnGameStart;
+    public UnityEvent OnGameEnd;
     public UnityEvent<int> OnPizzaDelivered;
     public UnityEvent<int> StartPizzaDelivery;
     public UnityEvent<float> OnDeliveryStart;
 
+    public SaveResults saveReults;
+
         
     [SerializeField] CarController carPrefab;
     public Waypoint carSpawnPoint;
+    public float damageMultiplier = 50f;
+
     public float carSpeed = .2f;
 
     public int pizzasToDeliver = 0;    
@@ -23,8 +28,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private void Start()
     {
         OnDeliveryStart.AddListener(StartDelivery);
-        OnPizzaDelivered.AddListener(PizzasDelivered);    
-        
+        OnPizzaDelivered.AddListener(PizzasDelivered);
+        OnGameEnd.AddListener(() => Debug.Log("Game Over"));
+        saveReults.AchievementOneMet = false;
 
         // on timer start
         //  disable scene
