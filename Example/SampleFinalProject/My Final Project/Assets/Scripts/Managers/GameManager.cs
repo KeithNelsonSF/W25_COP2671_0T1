@@ -10,7 +10,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public UnityEvent<int> StartPizzaDelivery;
     public UnityEvent<float> OnDeliveryStart;
 
-    public SaveResults saveReults;
+    public SaveResults saveResults;
 
         
     [SerializeField] CarController carPrefab;
@@ -30,8 +30,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         OnDeliveryStart.AddListener(StartDelivery);
         OnPizzaDelivered.AddListener(PizzasDelivered);
         OnGameEnd.AddListener(() => Debug.Log("Game Over"));
-        saveReults.AchievementOneMet = false;
-
+        
         // on timer start
         //  disable scene
         //  

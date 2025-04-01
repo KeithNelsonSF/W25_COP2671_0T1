@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeliveryStop : MonoBehaviour
@@ -15,6 +14,7 @@ public class DeliveryStop : MonoBehaviour
 
     private void Awake()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         tipCollectible = GetComponentInChildren<TipCollectible>();
         tipCollectible.SetMultiplier(tipMultiplier);
 
