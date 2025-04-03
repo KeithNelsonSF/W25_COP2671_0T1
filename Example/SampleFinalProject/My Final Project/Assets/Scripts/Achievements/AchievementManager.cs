@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class AchievementManager : SingletonMonoBehaviour<AchievementManager>
@@ -11,7 +10,6 @@ public class AchievementManager : SingletonMonoBehaviour<AchievementManager>
     public UnityEvent<string, string> OnAchievementMet;
     public List<Achievement_SO> AchievementList = new List<Achievement_SO>();
 
-    [SerializeField] private Canvas _canvas;
     [SerializeField] private Image _panel;    
     [SerializeField] private TMP_Text _text;
     [SerializeField] private SaveResults _saveResults;

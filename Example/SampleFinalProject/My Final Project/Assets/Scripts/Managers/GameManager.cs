@@ -1,10 +1,12 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public UnityEvent OnGameStart;
+    public UnityEvent OnGameLoad;
     public UnityEvent OnGameEnd;
     public UnityEvent<int> OnPizzaDelivered;
     public UnityEvent<int> StartPizzaDelivery;
@@ -12,25 +14,30 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public SaveResults saveResults;
 
-        
+
     [SerializeField] CarController carPrefab;
     public Waypoint carSpawnPoint;
     public float damageMultiplier = 50f;
 
     public float carSpeed = .2f;
 
-    public int pizzasToDeliver = 0;    
+    public int pizzasToDeliver = 0;
     public int totalTipsCollected = 0;
     public int totalPizzasDelivered = 0;
     public float totalCollissionDamage = 0f;
     public string currentDeliveryStopName = "";
 
+    public override void InitializeAfterAwake()
+    {
+        OnGameLoad.Invoke();
+    }
     private void Start()
     {
         OnDeliveryStart.AddListener(StartDelivery);
         OnPizzaDelivered.AddListener(PizzasDelivered);
         OnGameEnd.AddListener(() => Debug.Log("Game Over"));
-        
+
+
         // on timer start
         //  disable scene
         //  
@@ -78,7 +85,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         pizzasToDeliver = Random.Range(1, 10);
         StartCoroutine(StartDeliveryWithDelay(delay));
-    }    
+    }
     private void PizzasDelivered(int pizzas)
     {
         carSpawnPoint.gameObject.SetActive(true);
@@ -91,6 +98,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     public void SpawnPizzaTruck()
     {
-        Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);        
+        Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
+    }
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }

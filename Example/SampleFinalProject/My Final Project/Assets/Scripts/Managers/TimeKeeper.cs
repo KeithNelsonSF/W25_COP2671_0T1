@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,10 +22,11 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
     [SerializeField] float countdownTime;
     float elaspedTime = 0f;
     float countdownElapsedTime = 0;
-    bool isRunning
+    public bool IsRunning
     {
         get { return Time.timeScale == 1f; }
     }
+    public bool TimerStarted = false;
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {            
-            if (isRunning)
+            if (IsRunning)
             {
                 TimerPause();
             }            
@@ -48,7 +48,7 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
     {
         while(isActiveAndEnabled)
         {
-            while(isRunning)
+            while(IsRunning)
             {
                 if (countdownElapsedTime > 0)
                 {
@@ -75,12 +75,14 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
 
     public void TimerStart() 
     {
+        TimerStarted = true;
         Time.timeScale = 1f;        
         timeCoroutine = StartCoroutine(TimeCoroutine());
         OnStart.Invoke();
     }
     public void TimerStop()
     {
+        TimerStarted = false;
         //Time.timeScale = 0f;
         //StopCoroutine(timeCoroutine);
         //OnStop.Invoke();
@@ -99,8 +101,5 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
     {
         TimerStop();
         OnQuit.Invoke();
-
-        EditorApplication.ExitPlaymode();
-        Application.Quit();
     }
 }
