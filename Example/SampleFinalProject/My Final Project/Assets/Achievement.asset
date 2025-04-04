@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8490ea614e5ae3c478327f95a4f2861c, type: 3}
-  m_Name: Achievement_One
+  m_Name: Achievement
   m_EditorClassIdentifier: 
-  hasAchievementMet: 1
-  achievementText: the first one is free!
-  numberOfPizzaDeliveriesToMake: 1
-  deliveryTime: 0
+  hasAchievementMet: 0
+  achievementText: road protocol! //acidents
+  numberOfPizzaDeliveriesToMake: 1000
+  deliveryTime: 10
   minDamage: 0
   carDamage: 0
-  runningTime: 10.287944
+  runningTime: 20.225811

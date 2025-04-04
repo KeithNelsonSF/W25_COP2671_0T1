@@ -36,11 +36,13 @@ public class TimeKeeper : SingletonMonoBehaviour<TimeKeeper>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {            
+        {
             if (IsRunning)
             {
                 TimerPause();
-            }            
+            }
+            //else
+            //    TimerResume();
         }
     }
 

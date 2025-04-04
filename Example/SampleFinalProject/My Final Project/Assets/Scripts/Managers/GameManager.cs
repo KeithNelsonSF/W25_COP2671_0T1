@@ -13,10 +13,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public UnityEvent<float> OnDeliveryStart;
 
     public SaveResults saveResults;
-
+    
 
     [SerializeField] CarController carPrefab;
     public Waypoint carSpawnPoint;
+
+    public float damage = 0;
     public float damageMultiplier = 50f;
 
     public float carSpeed = .2f;
