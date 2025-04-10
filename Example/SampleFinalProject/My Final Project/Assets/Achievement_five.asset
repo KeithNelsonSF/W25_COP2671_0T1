@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8490ea614e5ae3c478327f95a4f2861c, type: 3}
   m_Name: Achievement_five
   m_EditorClassIdentifier: 
-  hasAchievementMet: 0
-  achievementText: delivery with style! // backwards
-  numberOfPizzaDeliveriesToMake: 1000
-  deliveryTime: 10
-  minDamage: 0
-  carDamage: 0
-  runningTime: 20.225811
+  hasAchievementMet: 1
+  achievementText: delivery with style!
+  numberOfPizzaDeliveriesComplete: 1
+  deliveryTime: 0
+  deliveryDirection: -1
+  minCarDamage: 0
+  actualCarDamage: 0
+  runningTime: 9.862159

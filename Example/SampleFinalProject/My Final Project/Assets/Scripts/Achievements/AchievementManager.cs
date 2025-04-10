@@ -24,15 +24,15 @@ public class AchievementManager : SingletonMonoBehaviour<AchievementManager>
 
         foreach (var achievement in AchievementList) 
         {
-            if (_saveResults.gameData.Contains(new SaveResults.AchievementData { 
-                name = achievement.name, achievementMet = true }))
-            {
-                achievement.hasAchievementMet = true;
-            }
-            else
-            {
+        //    if (_saveResults.gameData.Contains(new SaveResults.AchievementData { 
+        //        name = achievement.name, achievementMet = true }))
+        //    {
+        //        achievement.hasAchievementMet = true;
+        //    }
+        //    else
+        //    {
                 achievement.Start();
-            }
+            //}
         }
     }
     private void Update()

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasAchievementMet: 1
   achievementText: the first one is free!
-  numberOfPizzaDeliveriesToMake: 1
+  numberOfPizzaDeliveriesComplete: 1
   deliveryTime: 0
-  minDamage: 0
-  carDamage: 0
-  runningTime: 10.287944
+  deliveryDirection: 0
+  minCarDamage: 0
+  actualCarDamage: 0
+  runningTime: 9.862159

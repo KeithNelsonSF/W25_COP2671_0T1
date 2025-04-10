@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasAchievementMet: 0
   achievementText: pizza time!
-  numberOfPizzaDeliveriesToMake: 1
+  numberOfPizzaDeliveriesComplete: 1
   deliveryTime: 0
-  minDamage: 80
-  carDamage: 0
-  runningTime: 20.225811
+  deliveryDirection: 0
+  minCarDamage: 80
+  actualCarDamage: 70
+  runningTime: 123.4848

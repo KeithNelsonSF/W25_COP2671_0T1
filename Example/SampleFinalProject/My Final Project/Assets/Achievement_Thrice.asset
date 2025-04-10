@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8490ea614e5ae3c478327f95a4f2861c, type: 3}
   m_Name: Achievement_Thrice
   m_EditorClassIdentifier: 
-  hasAchievementMet: 0
+  hasAchievementMet: 1
   achievementText: third times a charm!
-  numberOfPizzaDeliveriesToMake: 3
+  numberOfPizzaDeliveriesComplete: 3
   deliveryTime: 100
-  runningTime: 9.3831215
+  deliveryDirection: 0
+  minCarDamage: 0
+  actualCarDamage: 20
+  runningTime: 46.51952

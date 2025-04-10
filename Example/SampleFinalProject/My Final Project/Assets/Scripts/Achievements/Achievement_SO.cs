@@ -5,14 +5,15 @@ public class Achievement_SO : ScriptableObject
 {
     public bool hasAchievementMet;
     public string achievementText;
-    public int numberOfPizzaDeliveriesToMake;
+    public int numberOfPizzaDeliveriesComplete;
     public float deliveryTime;
-    public float minDamage;
-    public float carDamage;
-
+    public float deliveryDirection = 0f;
+    public float minCarDamage;
+    public float actualCarDamage;
+    
 
     public float runningTime;
-    private int numberOfPizzasDeliveries;
+    protected int numberOfPizzasDeliveries;
 
     public void Start()
     {
@@ -24,17 +25,18 @@ public class Achievement_SO : ScriptableObject
     public void Update()
     {
         runningTime += Time.deltaTime;
-        carDamage = GameManager.Instance.damage;
+        actualCarDamage = GameManager.Instance.damage;        
     }
-    private void UpdatePizzaDelivered(int pizzas)
+    public virtual void UpdatePizzaDelivered(int pizzas)
     {
         if (hasAchievementMet) return;
 
         numberOfPizzasDeliveries++;
-        if (numberOfPizzasDeliveries < numberOfPizzaDeliveriesToMake) return;
+        if (numberOfPizzasDeliveries < numberOfPizzaDeliveriesComplete) return;
         if (deliveryTime > 0 && deliveryTime < runningTime) return;
-        if (minDamage > 0 && carDamage < minDamage) return;
-                
+        if (minCarDamage > 0 && actualCarDamage < minCarDamage) return;
+        if (deliveryDirection > 0 && GameManager.Instance.driveDirections.y * deliveryDirection <= 0) return;
+
         AchievementManager.Instance.OnAchievementMet.Invoke(achievementText, name);
         hasAchievementMet = true;        
     }

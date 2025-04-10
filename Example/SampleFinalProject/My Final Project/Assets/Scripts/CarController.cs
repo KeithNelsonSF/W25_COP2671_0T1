@@ -5,15 +5,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(AudioSource))]
 public class CarController : MonoBehaviour
 {
-    static string Horizontal = nameof(Horizontal);
-    static string Vertical = nameof(Vertical);
-
     AudioSource _audioSource;
     NavMeshAgent _agent;    
-
-    float forwardInput => Input.GetAxis(Vertical);
-    float turnInput => Input.GetAxis(Horizontal);
-
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();        
@@ -25,6 +18,9 @@ public class CarController : MonoBehaviour
     }
     private void Update()
     {
+        var forwardInput = GameManager.Instance.driveDirections.y;
+        var turnInput = GameManager.Instance.driveDirections.x;
+
         var pitch = Mathf.Clamp(1 + Mathf.Abs(forwardInput), 1, 2);
         _audioSource.pitch = pitch;        
 

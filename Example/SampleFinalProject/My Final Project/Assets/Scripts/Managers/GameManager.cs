@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    static string Horizontal = nameof(Horizontal);
+    static string Vertical = nameof(Vertical);
+
     public UnityEvent OnGameStart;
     public UnityEvent OnGameLoad;
     public UnityEvent OnGameEnd;
@@ -14,9 +17,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public SaveResults saveResults;
     
+    public Vector2 driveDirections => new Vector2(Input.GetAxis(Horizontal), Input.GetAxis(Vertical));
+    
 
     [SerializeField] CarController carPrefab;
     public Waypoint carSpawnPoint;
+    public int lightPolesInScene;
+    public int lightPolesTouched;
 
     public float damage = 0;
     public float damageMultiplier = 50f;
