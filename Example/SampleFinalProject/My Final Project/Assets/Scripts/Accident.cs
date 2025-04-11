@@ -9,4 +9,12 @@ public class Accident : MonoBehaviour
         Destroy(gameObject);
         yield return null;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            GameManager.Instance.insuranceThreat = true;
+        }
+    }
 }

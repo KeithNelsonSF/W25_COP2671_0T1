@@ -19,8 +19,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     
     public Vector2 driveDirections => new Vector2(Input.GetAxis(Horizontal), Input.GetAxis(Vertical));
     
-
     [SerializeField] CarController carPrefab;
+    private CarController pizzaDeliveryVehicle;
     public Waypoint carSpawnPoint;
     public int lightPolesInScene;
     public int lightPolesTouched;
@@ -35,60 +35,28 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int totalPizzasDelivered = 0;
     public float totalCollissionDamage = 0f;
     public string currentDeliveryStopName = "";
+    public bool insuranceThreat;
+
+    public void ResetTotals()
+    {
+        totalCollissionDamage = 0;
+        totalTipsCollected = 0;
+        totalPizzasDelivered = 0;        
+        ScoreManager.Instance.UpdateAll();
+    }
+
 
     public override void InitializeAfterAwake()
     {
         OnGameLoad.Invoke();
     }
     private void Start()
-    {
+    {   
         OnDeliveryStart.AddListener(StartDelivery);
         OnPizzaDelivered.AddListener(PizzasDelivered);
-        OnGameEnd.AddListener(() => Debug.Log("Game Over"));
-
-
-        // on timer start
-        //  disable scene
-        //  
-
-
-
-
-
-
-        // tips collect
-        //  sound ?
-        // pizza delivered
-        //  sound ?
-        //  update score
-
-        // accidents caused
-        //  sound ?
-
-
-
-        // -- game play --
-        // random tip amount or calculated?   
-        //      minimum, plus every 10 seconds an extra 1
-        //      maximum based on # pizxa times (value), decrease based on deliver time.
-        // random tip timeout calculated or fixed?
-        //      distance * 2
-        // what cause a game over condition?
-        //  played for 10 minutes.
-        // what cause a win condition?
-        // goal - collect 10 dollars.
-
-        // -- score board --
-        // tip's collected - dolloar amount
-        // deliveries made - 
-        // accidents caused -- 
-        // display countdown for what??
-        //  rounds
-
-        // -- backlog --
-        // miles driven, start - finish / toal game
-        // achievemant system
     }
+
+
 
     private void StartDelivery(float delay)
     {
@@ -105,9 +73,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         yield return new WaitForSeconds(delay);
         StartPizzaDelivery.Invoke(pizzasToDeliver);
     }
+    public void ResetPizzaTruck()
+    {
+        pizzaDeliveryVehicle.transform.position = carSpawnPoint.transform.position;
+        pizzaDeliveryVehicle.transform.rotation = carSpawnPoint.transform.rotation;
+    }
     public void SpawnPizzaTruck()
     {
-        Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
+        pizzaDeliveryVehicle = Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
     }
     public void QuitGame()
     {

@@ -1359,7 +1359,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a457cbdd89778bb41bdbf2d9407c66b3, type: 2}
   m_sharedMaterial: {fileID: 4736973230768121460, guid: a457cbdd89778bb41bdbf2d9407c66b3, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 4736973230768121460, guid: a457cbdd89778bb41bdbf2d9407c66b3, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1750,7 +1751,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_sharedMaterial: {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -2882,6 +2884,12 @@ MonoBehaviour:
   OnGameStart:
     m_PersistentCalls:
       m_Calls: []
+  OnGameLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameEnd:
+    m_PersistentCalls:
+      m_Calls: []
   OnPizzaDelivered:
     m_PersistentCalls:
       m_Calls:
@@ -2915,8 +2923,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  saveResults: {fileID: 0}
   carPrefab: {fileID: 2402229249731144511, guid: aec85039b0ce31b42bae93f7ce258732, type: 3}
   carSpawnPoint: {fileID: 1131423256}
+  lightPolesInScene: 0
+  lightPolesTouched: 0
+  damage: 0
+  damageMultiplier: 50
   carSpeed: 40
   pizzasToDeliver: 0
   totalTipsCollected: 0
@@ -4935,7 +4948,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a457cbdd89778bb41bdbf2d9407c66b3, type: 2}
   m_sharedMaterial: {fileID: 4736973230768121460, guid: a457cbdd89778bb41bdbf2d9407c66b3, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 4736973230768121460, guid: a457cbdd89778bb41bdbf2d9407c66b3, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6900,6 +6914,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   countdownTime: 0
+  TimerStarted: 0
 --- !u!1 &578551996
 GameObject:
   m_ObjectHideFlags: 0
@@ -11633,7 +11648,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_sharedMaterial: {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -16432,7 +16448,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_sharedMaterial: {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -19688,7 +19705,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_sharedMaterial: {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 9055008293081848702, guid: 8074eb99635b57b40999346346a2f1a2, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:

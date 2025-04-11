@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8490ea614e5ae3c478327f95a4f2861c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bf991cc6984079458a857e72942ba09, type: 3}
   m_Name: Achievement_six
   m_EditorClassIdentifier: 
   hasAchievementMet: 0
-  achievementText: road protocol! //acidents
-  numberOfPizzaDeliveriesComplete: 100
-  deliveryTime: 10
+  achievementText: road protocol!
+  numberOfPizzaDeliveriesComplete: 0
+  deliveryTime: 0
   deliveryDirection: 0
   minCarDamage: 0
-  actualCarDamage: 70
-  runningTime: 123.4848
+  actualCarDamage: 0
+  runningTime: 0

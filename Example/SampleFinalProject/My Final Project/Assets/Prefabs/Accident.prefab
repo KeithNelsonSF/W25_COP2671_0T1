@@ -136,6 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4481275581198884034}
   - component: {fileID: -8715855486630181993}
+  - component: {fileID: 6068719445109722352}
   m_Layer: 0
   m_Name: Accident
   m_TagString: Untagged
@@ -171,6 +172,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6a98aa8a75ac248a052f955f827b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &6068719445109722352
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500896441159841388}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 24.618484, y: 6.6321883, z: 16.145386}
+  m_Center: {x: 21.617702, y: 1.4419425, z: -0.8475456}
 --- !u!1 &5355951257990612024
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +223,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7420963504260976738}
-  - {fileID: 9034233017246780330}
+  - {fileID: 9034233017247136964}
   - {fileID: 7666539028918750401}
   - {fileID: 3589884751548037142}
   - {fileID: 1880316332235435229}
@@ -1310,7 +1332,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8473672952464482436}
   m_SourcePrefab: {fileID: 100100000, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
---- !u!1 &9034233017246780329 stripped
+--- !u!1 &9034233017246686482 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 104122, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
   m_PrefabInstance: {fileID: 9034233017246780328}
@@ -1321,7 +1343,7 @@ NavMeshObstacle:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9034233017246780329}
+  m_GameObject: {fileID: 9034233017246686482}
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
@@ -1331,7 +1353,7 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.6350002, z: 0.011000001}
   m_TimeToStationary: 0.5
---- !u!4 &9034233017246780330 stripped
+--- !u!4 &9034233017247136964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 489324, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
   m_PrefabInstance: {fileID: 9034233017246780328}
