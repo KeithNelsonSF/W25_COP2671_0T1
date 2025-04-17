@@ -4,7 +4,7 @@ using UnityEngine;
 public class PizzaDeliveredText : MonoBehaviour
 {
     [SerializeField] TMP_Text pizzaDeiveredeText;
-    int currentPizzaCount = 0;
+    //int currentPizzaCount = 0;
 
     private void Start()
     {
@@ -13,9 +13,7 @@ public class PizzaDeliveredText : MonoBehaviour
 
     public void UpdateText(int pizzasToAdd)
     {
-        currentPizzaCount += pizzasToAdd;
-        pizzaDeiveredeText.text = $"Pizzas Delivered - {currentPizzaCount:00}";
-
-        GameManager.Instance.totalPizzasDelivered = currentPizzaCount;
+        GameManager.Instance.totalPizzasDelivered += pizzasToAdd;
+        pizzaDeiveredeText.text = $"Pizzas Delivered - {GameManager.Instance.totalPizzasDelivered:00}";
     }    
 }

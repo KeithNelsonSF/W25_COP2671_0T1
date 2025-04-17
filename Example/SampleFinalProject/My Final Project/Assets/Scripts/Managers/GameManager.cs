@@ -19,8 +19,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     
     public Vector2 driveDirections => new Vector2(Input.GetAxis(Horizontal), Input.GetAxis(Vertical));
     
-
     [SerializeField] CarController carPrefab;
+    private CarController pizzaDeliveryVehicle;
     public Waypoint carSpawnPoint;
     public int lightPolesInScene;
     public int lightPolesTouched;
@@ -35,6 +35,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int totalPizzasDelivered = 0;
     public float totalCollissionDamage = 0f;
     public string currentDeliveryStopName = "";
+    public bool insuranceThreat;
+
+    public void ResetTotals()
+    {
+        totalCollissionDamage = 0;
+        totalTipsCollected = 0;
+        totalPizzasDelivered = 0;        
+        ScoreManager.Instance.UpdateAll();
+    }
+
 
     public override void InitializeAfterAwake()
     {
@@ -50,7 +60,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         OnDeliveryStart.AddListener(StartDelivery);
         OnPizzaDelivered.AddListener(PizzasDelivered);
-        OnGameEnd.AddListener(() => Debug.Log("Game Over"));
+    }
 
 
         // on timer start
@@ -117,9 +127,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         yield return new WaitForSeconds(delay);
         StartPizzaDelivery.Invoke(pizzasToDeliver);
     }
+    public void ResetPizzaTruck()
+    {
+        pizzaDeliveryVehicle.transform.position = carSpawnPoint.transform.position;
+        pizzaDeliveryVehicle.transform.rotation = carSpawnPoint.transform.rotation;
+    }
     public void SpawnPizzaTruck()
     {
-        Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
+        pizzaDeliveryVehicle = Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
     }
     public void QuitGame()
     {

@@ -37,10 +37,11 @@ public class AchievementManager : SingletonMonoBehaviour<AchievementManager>
     }
     private void Update()
     {
+        var drivenDirection = GameManager.Instance.driveDirections.y;
         foreach (var achievement in AchievementList) 
         {
             if (! achievement.hasAchievementMet)
-                achievement.Update();
+                achievement.UpdateLoop(drivenDirection);
         }
     }
     private void AchievementMet(string achievementText, string name)

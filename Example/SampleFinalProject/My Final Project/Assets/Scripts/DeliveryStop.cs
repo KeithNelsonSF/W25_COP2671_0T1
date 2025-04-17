@@ -12,9 +12,9 @@ public class DeliveryStop : MonoBehaviour
     TipCollectible tipCollectible;
     MeshRenderer meshRenderer;
 
-    private void Awake()
+    private void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
         tipCollectible = GetComponentInChildren<TipCollectible>();
         tipCollectible.SetMultiplier(tipMultiplier);
 
@@ -66,10 +66,12 @@ public class DeliveryStop : MonoBehaviour
     }
     private IEnumerator tipTheDriver()
     {
+        Dectivate();
         tipCollectible.gameObject.SetActive(false);
         tipParticle.Play();
-        yield return new WaitForSeconds(tipParticle.main.duration);
         GameManager.Instance.OnPizzaDelivered.Invoke(GameManager.Instance.pizzasToDeliver);
+
+        yield return new WaitForSeconds(tipParticle.main.duration);        
         DeliveryStopObjectSpawner.ReturnToPool(this);
     }
 }

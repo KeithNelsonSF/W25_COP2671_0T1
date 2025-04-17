@@ -20,4 +20,9 @@ public class DisplayDamage : MonoBehaviour
             GameManager.Instance.OnGameEnd.Invoke();
         }
     }
+    public void ResetSlider()
+    {
+        GameManager.Instance.damage = 0;
+        slider.value = 100;
+    }
 }

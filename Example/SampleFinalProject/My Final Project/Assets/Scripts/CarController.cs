@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         _agent.speed = GameManager.Instance.carSpeed;
+        GameManager.Instance.OnGameEnd.AddListener(() => _audioSource.Stop());
     }
     private void Update()
     {
