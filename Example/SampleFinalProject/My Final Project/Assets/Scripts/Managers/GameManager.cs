@@ -42,6 +42,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     private void Start()
     {
+        MenuManager.Instance.OnGameStart.AddListener(() => GameStart());
+
+
+
+
+
         OnDeliveryStart.AddListener(StartDelivery);
         OnPizzaDelivered.AddListener(PizzasDelivered);
         OnGameEnd.AddListener(() => Debug.Log("Game Over"));
@@ -88,6 +94,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // -- backlog --
         // miles driven, start - finish / toal game
         // achievemant system
+    }
+
+    private void GameStart() 
+    {   
+        SpawnPizzaTruck();
+        OnGameStart.Invoke();
     }
 
     private void StartDelivery(float delay)
