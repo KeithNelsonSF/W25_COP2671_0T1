@@ -16,9 +16,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public UnityEvent<float> OnDeliveryStart;
 
     public SaveResults saveResults;
-    
+
     public Vector2 driveDirections => new Vector2(Input.GetAxis(Horizontal), Input.GetAxis(Vertical));
-    
+
     [SerializeField] CarController carPrefab;
     private CarController pizzaDeliveryVehicle;
     public Waypoint carSpawnPoint;
@@ -41,7 +41,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         totalCollissionDamage = 0;
         totalTipsCollected = 0;
-        totalPizzasDelivered = 0;        
+        totalPizzasDelivered = 0;
         ScoreManager.Instance.UpdateAll();
     }
 
@@ -53,65 +53,32 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private void Start()
     {
         MenuManager.Instance.OnGameStart.AddListener(() => GameStart());
-
-
-
-
+        MenuManager.Instance.OnGameFinished.AddListener(() => GameEnd());
+        MenuManager.Instance.OnGameAchievements.AddListener(() => GameAchievements());
+        MenuManager.Instance.OnGameResume.AddListener(() => GameResume());
+        MenuManager.Instance.OnGamePause.AddListener(() => GamePause());
+        MenuManager.Instance.OnGameOver.AddListener(() => GameOver());
 
         OnDeliveryStart.AddListener(StartDelivery);
         OnPizzaDelivered.AddListener(PizzasDelivered);
     }
-
-
-        // on timer start
-        //  disable scene
-        //  
-
-
-
-
-
-
-        // tips collect
-        //  sound ?
-        // pizza delivered
-        //  sound ?
-        //  update score
-
-        // accidents caused
-        //  sound ?
-
-
-
-        // -- game play --
-        // random tip amount or calculated?   
-        //      minimum, plus every 10 seconds an extra 1
-        //      maximum based on # pizxa times (value), decrease based on deliver time.
-        // random tip timeout calculated or fixed?
-        //      distance * 2
-        // what cause a game over condition?
-        //  played for 10 minutes.
-        // what cause a win condition?
-        // goal - collect 10 dollars.
-
-        // -- score board --
-        // tip's collected - dolloar amount
-        // deliveries made - 
-        // accidents caused -- 
-        // display countdown for what??
-        //  rounds
-
-        // -- backlog --
-        // miles driven, start - finish / toal game
-        // achievemant system
+    private void GameEnd()
+    {
+        TimeKeeper.Instance.TimerQuit();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
-
-    private void GameStart() 
-    {   
+    private void GameStart()
+    {
         SpawnPizzaTruck();
         OnGameStart.Invoke();
     }
-
+    private void GameOver() { }
+    private void GamePause() { TimeKeeper.Instance.TimerPause(); }
+    private void GameResume() { TimeKeeper.Instance.TimerResume(); }
+    private void GameAchievements() { }
     private void StartDelivery(float delay)
     {
         pizzasToDeliver = Random.Range(1, 10);
@@ -136,11 +103,5 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         pizzaDeliveryVehicle = Instantiate(carPrefab, carSpawnPoint.transform.position, carSpawnPoint.transform.rotation);
     }
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
-    }
+
 }

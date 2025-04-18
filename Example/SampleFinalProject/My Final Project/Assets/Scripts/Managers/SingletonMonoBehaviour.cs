@@ -11,8 +11,8 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     public static T Instance { 
         get
         {
-            if (_instance == null)
-                Debug.LogError($"No instance of {typeof(T)} exists in the scene.");
+            //if (_instance == null)
+            //    Debug.LogError($"No instance of {typeof(T)} exists in the scene.");
 
             return _instance;
         }

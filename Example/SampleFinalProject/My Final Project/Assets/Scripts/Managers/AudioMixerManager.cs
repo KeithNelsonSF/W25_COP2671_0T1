@@ -11,38 +11,42 @@ public class AudioMixerManager : MonoBehaviour
     bool muteSfx => sfxVolume > 0;
     float sfxVolume;
     float masterVolume;
-    bool muteMaster => masterVolume > 0;
+    bool muteMaster = false;
 
     private void Start()
     {
-        SfxChannel.audioMixer.GetFloat("SFX", out sfxVolume);
-        Master.GetFloat("Master", out masterVolume);
+        SfxChannel.audioMixer.GetFloat("SFXVol", out sfxVolume);
+        Master.GetFloat("MasterVol", out masterVolume);
     }
     public void ToggleMasterChannel() 
     {
+        AudioMixerSnapshot snap;
         if (muteMaster)
         {
-            Master.SetFloat("Master", 0);
+            snap = Master.FindSnapshot("Snapshot - Mute Master");
         }
         else
         {
-            Master.SetFloat("Master", masterVolume);
+            snap = Master.FindSnapshot("Snapshot - DEFAULT");
         }
+        snap.TransitionTo(0.2f);
     }
     public void SetMasterVolume(float volumeLevel) 
     {
-        Master.SetFloat("Master", volumeLevel);
-        masterVolume = volumeLevel;
+        var volume = Mathf.Log10(volumeLevel) * 20;
+        Master.SetFloat("MasterVol", volume);
+        masterVolume = volume;
     }
     public void ToggleSfxChannel() 
     {
+        Debug.Break();
         if (muteSfx)
         {   
-            SfxChannel.audioMixer.SetFloat("SFX", 0);
+            SfxChannel.audioMixer.SetFloat("SFXVol", 0);
         }
         else
         {
-            SfxChannel.audioMixer.SetFloat("SFX", sfxVolume);
+            SfxChannel.audioMixer.SetFloat("SFXVol", sfxVolume);
         }
     }
 

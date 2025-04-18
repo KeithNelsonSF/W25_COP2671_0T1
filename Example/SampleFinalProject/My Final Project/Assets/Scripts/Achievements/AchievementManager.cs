@@ -20,7 +20,7 @@ public class AchievementManager : SingletonMonoBehaviour<AchievementManager>
     {
         _audioSource = GetComponent<AudioSource>();
         OnAchievementMet.AddListener((text, name) => AchievementMet(text, name));
-        _panel.gameObject.SetActive(false);
+        //_panel.gameObject.SetActive(false);
 
         foreach (var achievement in AchievementList) 
         {
@@ -37,6 +37,8 @@ public class AchievementManager : SingletonMonoBehaviour<AchievementManager>
     }
     private void Update()
     {
+        if (GameManager.Instance == null ) return;
+
         var drivenDirection = GameManager.Instance.driveDirections.y;
         foreach (var achievement in AchievementList) 
         {
