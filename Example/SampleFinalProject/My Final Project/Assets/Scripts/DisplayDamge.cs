@@ -15,10 +15,6 @@ public class DisplayDamage : MonoBehaviour
         GameManager.Instance.damage += damage * GameManager.Instance.damageMultiplier;
         slider.value -= damage * GameManager.Instance.damageMultiplier;
 
-        if (slider.value <= 0)
-        {
-            GameManager.Instance.OnGameEnd.Invoke();
-        }
     }
     public void ResetSlider()
     {
