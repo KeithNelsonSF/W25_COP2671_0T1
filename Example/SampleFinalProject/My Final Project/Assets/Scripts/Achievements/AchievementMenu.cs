@@ -13,7 +13,7 @@ public class AchievementMenu : MonoBehaviour
     private Color achievementNotMetColor = Color.white;
 
     private void OnEnable()
-    {
+    {        
         foreach (var achievement in achievements.AchievementList)
         {
             Achievement achievement_instance = null;
@@ -40,13 +40,11 @@ public class AchievementMenu : MonoBehaviour
             {
                 achievement_instance.achievement_image.sprite = achievementMetIcon;
                 achievement_instance.achievement_image.color = achievementMetColor;
-                achievement_instance.panel_image.color = achievementMetColor;
             }
             else
             {
                 achievement_instance.achievement_image.sprite = achievementNotMetIcon;
                 achievement_instance.achievement_image.color = achievementNotMetColor;
-                achievement_instance.panel_image.color = achievementNotMetColor;
             }
 
             achievement_instance.achievement_text.text = achievement.achievementText;

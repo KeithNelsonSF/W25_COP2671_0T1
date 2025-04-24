@@ -8,6 +8,7 @@ public class CollissionDamageText : MonoBehaviour
     private void Start()
     {
         collissionDamageText = GetComponent<TMP_Text>();
+        UpdateText(0);
     }
     public void UpdateText(float collissionAmount)
     {

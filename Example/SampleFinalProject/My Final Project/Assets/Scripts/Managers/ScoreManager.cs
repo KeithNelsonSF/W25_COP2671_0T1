@@ -7,11 +7,11 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     public UnityEvent<float> OnCollissionDamge;
     public UnityEvent<string> OnDeliveryStopChanged;
 
-    public void UpdateAll()
-    {
-        OnCollissionDamge.Invoke(GameManager.Instance.totalCollissionDamage);
-        OnDeliveryStopChanged.Invoke(GameManager.Instance.currentDeliveryStopName);
-        OnPizzaScoreChanged.Invoke(GameManager.Instance.totalPizzasDelivered);
-        OnTipsScoreChanged.Invoke(GameManager.Instance.totalTipsCollected);
-    }
+    //public void UpdateAll()
+    //{
+    //    OnCollissionDamge.Invoke(GameManager.Instance.totalCollissionDamage);
+    //    OnDeliveryStopChanged.Invoke(GameManager.Instance.currentDeliveryStopName);
+    //    OnPizzaScoreChanged.Invoke(GameManager.Instance.totalPizzasDelivered);
+    //    OnTipsScoreChanged.Invoke(GameManager.Instance.totalTipsCollected);
+    //}
 }

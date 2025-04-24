@@ -9,11 +9,12 @@ public class PizzaDeliveredText : MonoBehaviour
     private void Start()
     {
         pizzaDeiveredeText = GetComponent<TMP_Text>();
+        UpdateText(0);
     }
 
     public void UpdateText(int pizzasToAdd)
     {
         GameManager.Instance.totalPizzasDelivered += pizzasToAdd;
-        pizzaDeiveredeText.text = $"Pizzas Delivered - {GameManager.Instance.totalPizzasDelivered:00}";
+        pizzaDeiveredeText.text = $"Pizzas Delivered - {GameManager.Instance.totalPizzasDelivered}";
     }    
 }

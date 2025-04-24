@@ -7,13 +7,12 @@ public class TipsCollectedText : MonoBehaviour
     private void Start()
     {
         tipsCollectedText = GetComponent<TMP_Text>();
+        UpdateText(0);
     }
 
     public void UpdateText(int tipAmountToAdd)
     {
         GameManager.Instance.totalTipsCollected += tipAmountToAdd;
         tipsCollectedText.text = $"Tips Collected - {GameManager.Instance.totalTipsCollected:$0.00}";
-
-        
     }    
 }

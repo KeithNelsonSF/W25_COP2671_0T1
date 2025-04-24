@@ -42,7 +42,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         totalCollissionDamage = 0;
         totalTipsCollected = 0;
         totalPizzasDelivered = 0;
-        ScoreManager.Instance.UpdateAll();
     }
 
 
@@ -54,17 +53,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         MenuManager.Instance.OnGameStart.AddListener(() => GameStart());
         MenuManager.Instance.OnGameFinished.AddListener(() => GameEnd());
-        MenuManager.Instance.OnGameAchievements.AddListener(() => GameAchievements());
-        MenuManager.Instance.OnGameResume.AddListener(() => GameResume());
-        MenuManager.Instance.OnGamePause.AddListener(() => GamePause());
+        MenuManager.Instance.OnGameAchievements.AddListener(() => GameAchievements());        
         MenuManager.Instance.OnGameOver.AddListener(() => GameOver());
 
         OnDeliveryStart.AddListener(StartDelivery);
         OnPizzaDelivered.AddListener(PizzasDelivered);
     }
     private void GameEnd()
-    {
-        TimeKeeper.Instance.TimerQuit();
+    {   
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif
@@ -75,9 +71,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         SpawnPizzaTruck();
         OnGameStart.Invoke();
     }
-    private void GameOver() { }
-    private void GamePause() { TimeKeeper.Instance.TimerPause(); }
-    private void GameResume() { TimeKeeper.Instance.TimerResume(); }
+    private void GameOver() { }    
     private void GameAchievements() { }
     private void StartDelivery(float delay)
     {
